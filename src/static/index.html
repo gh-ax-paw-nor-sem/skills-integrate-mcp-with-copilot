@@ -10,9 +10,68 @@
     <header>
       <h1>Mergington High School</h1>
       <h2>Extracurricular Activities</h2>
+      <div id="user-info" class="hidden">
+        <span id="user-name"></span>
+        <span id="user-role" class="role-badge"></span>
+        <button id="logout-btn">Logout</button>
+      </div>
     </header>
 
-    <main>
+    <!-- Authentication Section -->
+    <div id="auth-section">
+      <section id="auth-container">
+        <div class="auth-tabs">
+          <button id="login-tab" class="auth-tab active">Login</button>
+          <button id="register-tab" class="auth-tab">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form">
+          <h3>Login</h3>
+          <div class="form-group">
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" required placeholder="your-email@mergington.edu" />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" required />
+          </div>
+          <button type="submit">Login</button>
+          <div id="login-message" class="hidden"></div>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="auth-form hidden">
+          <h3>Register</h3>
+          <div class="form-group">
+            <label for="register-name">Full Name:</label>
+            <input type="text" id="register-name" required placeholder="John Doe" />
+          </div>
+          <div class="form-group">
+            <label for="register-email">School Email:</label>
+            <input type="email" id="register-email" required placeholder="your-email@mergington.edu" />
+          </div>
+          <div class="form-group">
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" required minlength="6" />
+          </div>
+          <div class="form-group">
+            <label for="register-confirm">Confirm Password:</label>
+            <input type="password" id="register-confirm" required minlength="6" />
+          </div>
+          <button type="submit">Register</button>
+          <div id="register-message" class="hidden"></div>
+        </form>
+
+        <p class="auth-note">
+          <strong>Demo Credentials:</strong><br>
+          Admin: admin@mergington.edu / admin123
+        </p>
+      </section>
+    </div>
+
+    <!-- Main Application (hidden until logged in) -->
+    <main id="main-app" class="hidden">
       <section id="activities-container">
         <h3>Available Activities</h3>
         <div id="activities-list">
@@ -21,23 +80,18 @@
         </div>
       </section>
 
-      <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
-        <form id="signup-form">
-          <div class="form-group">
-            <label for="email">Student Email:</label>
-            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
-          </div>
-          <div class="form-group">
-            <label for="activity">Select Activity:</label>
-            <select id="activity" required>
-              <option value="">-- Select an activity --</option>
-              <!-- Activity options will be loaded here -->
-            </select>
-          </div>
-          <button type="submit">Sign Up</button>
-        </form>
+      <section id="signup-container" class="student-only">
+        <h3>My Activities</h3>
+        <p>Sign up for activities by clicking on the cards on the left.</p>
         <div id="message" class="hidden"></div>
+      </section>
+
+      <section id="admin-panel" class="admin-only hidden">
+        <h3>Admin Panel</h3>
+        <div id="users-list">
+          <h4>Registered Users</h4>
+          <div id="users-container">Loading users...</div>
+        </div>
       </section>
     </main>
 
